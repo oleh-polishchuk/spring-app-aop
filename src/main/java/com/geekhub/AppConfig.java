@@ -1,12 +1,10 @@
 package com.geekhub;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 
 @Configuration
+@EnableAspectJAutoProxy
 @ComponentScan(basePackages = {"com.geekhub.*"})
 @PropertySource("classpath:application.properties")
 public class AppConfig {
@@ -38,5 +36,10 @@ public class AppConfig {
     @Bean
     public Wheel wheel(Tyres tyres) {
         return new Wheel(tyres);
+    }
+
+    @Bean
+    public CarAspect carAspect() {
+        return new CarAspect();
     }
 }
